@@ -1,15 +1,31 @@
 package ru.promo.javacore;
 
 import ru.promo.javacore.model.*;
+import ru.promo.javacore.service.BuilderReaccreditationProcess;
+import ru.promo.javacore.service.ITReaccreditationProcess;
+import ru.promo.javacore.service.ReaccreditationProcess;
+
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class JavaCoreApplication {
+
+    private static Map<CompanyType, ReaccreditationProcess> processMap = Map.of(
+            CompanyType.IT, new ITReaccreditationProcess(),
+            CompanyType.BUILDER, new BuilderReaccreditationProcess(),
+            CompanyType.CONSULTING, (c) -> System.out.println("Reaccreditation of Consulting Company with name " + c.getName())
+    );
+
     public static void main(String[] args) {
 //        System.out.println("Hello world!" + Arrays.toString(args));
 //        Lection1.task();
         ITCompany company1 = new ITCompany("Company1", 10);
         System.out.println(company1);
-        ITCompany company2 = new ITCompany("Company1", 10);
+        ITCompany company2 = new ITCompany("Company2", 10);
         System.out.println(company2);
+        company2.setAttr(CompanyType.CONSULTING);
 
         System.out.println(company1.getName());
         company2.placeVacancy("Java Developer");
@@ -33,11 +49,38 @@ public class JavaCoreApplication {
         System.out.println(company1.getAttr());
         System.out.println(builderCompany.getAttr());
 
-        reAccreditation(builderCompany);
+//        reAccreditation(builderCompany);
 
         Notification<Double> balanceNotification = new Notification<>("balance", 100.0);
 
         Notification<SomeInformation> informationNotification = new Notification<>("info", new SomeInformation("123", 123));
+
+        List<Company<CompanyType>> list = new ArrayList<>();
+        list.add(company1);
+        list.add(company2);
+        list.add(builderCompany);
+        list.add(builderCompany);
+
+        list.forEach(JavaCoreApplication::reAccreditation);
+
+        Set<String> collect = list.stream()
+                .map(Company::getName)
+                .map(String::toUpperCase)
+                .collect(Collectors.toSet());
+        System.out.println(collect);
+
+        Optional<String> first = list.stream()
+                .filter(company -> CompanyType.IT.equals(company.getAttr()))
+                .map(Company::getName)
+                .findFirst();
+
+
+//        System.out.println(list);
+//        System.out.println(list.size());
+
+//        reAccreditation(company1);
+//        reAccreditation(builderCompany);
+//        reAccreditation(company2);
     }
 
     public static void startWorkDay(Organization[] companies) {
@@ -48,9 +91,7 @@ public class JavaCoreApplication {
 
     public static <T extends Company<CompanyType>> void reAccreditation(T company) {
         CompanyType type = company.getAttr();
-        switch (type) {
-            case IT -> System.out.println("Reaccreditation of IT Company with name " + company.getName());
-            case BUILDER -> System.out.println("Reaccreditation of Builder Company with name " + company.getName());
-        }
+        ReaccreditationProcess reaccreditationProcess = processMap.get(type);
+        reaccreditationProcess.process(company);
     }
 }

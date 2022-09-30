@@ -8,4 +8,10 @@ public class SomeInformation {
         this.s = s;
         this.a = a;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        System.out.println("equals!");
+        return super.equals(obj);
+    }
 }

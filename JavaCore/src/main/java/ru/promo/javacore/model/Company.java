@@ -86,6 +86,7 @@ public abstract class Company<T> implements Organization {
 
     @Override
     public boolean equals(Object o) {
+        System.out.println("EQUALS!");
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Company company = (Company) o;
@@ -94,6 +95,7 @@ public abstract class Company<T> implements Organization {
 
     @Override
     public int hashCode() {
+        System.out.println("HASHCODE!");
         return Objects.hash(name, about, address, phone, employeeCount);
     }
 
