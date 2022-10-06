@@ -61,6 +61,11 @@ public class JavaCoreApplication {
         list.add(builderCompany);
         list.add(builderCompany);
 
+        Object[] objects = new Object[0];
+        Object[] objects1 = list.toArray(objects);
+        System.out.println("toArray");
+        Arrays.stream(objects1).forEach(System.out::println);
+
         list.forEach(JavaCoreApplication::reAccreditation);
 
         Set<String> collect = list.stream()
@@ -73,7 +78,6 @@ public class JavaCoreApplication {
                 .filter(company -> CompanyType.IT.equals(company.getAttr()))
                 .map(Company::getName)
                 .findFirst();
-
 
 //        System.out.println(list);
 //        System.out.println(list.size());
