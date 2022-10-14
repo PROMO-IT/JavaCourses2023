@@ -9,6 +9,8 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class JavaCoreApplication {
 
@@ -85,6 +87,21 @@ public class JavaCoreApplication {
 //        reAccreditation(company1);
 //        reAccreditation(builderCompany);
 //        reAccreditation(company2);
+
+
+//        int[] ints = IntStream.range(0, 1000000000).toArray();
+//        IntStream stream = Arrays.stream(ints);
+//
+//        long l = System.currentTimeMillis();
+//        stream.sum();
+//        System.out.println(System.currentTimeMillis() - l);
+//
+//        int s = 0;
+//        l = System.currentTimeMillis();
+//        for (int a: ints) {
+//            s += a;
+//        }
+//        System.out.println(System.currentTimeMillis() - l);
     }
 
     public static void startWorkDay(Organization[] companies) {
