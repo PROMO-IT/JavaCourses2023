@@ -587,6 +587,7 @@ public class ReznikovList<T> implements List<T>, AuthorHolder {
 
             var result = firstHalf.join();
             result.merge(secondHalf.join(), comparator);
+            list.head = result.head;
             return result;
         }
     }

@@ -19,7 +19,7 @@ public class ContestApplication {
 //            new ProdigyGirlList<>(),
 //            new RailShabayevList<>(),
             new RamproxList<>(),
-//            new ReznikovList<>(),
+            new ReznikovList<>(),
 //            new VarozhList<>(),
             new VladisList<>()
     );
@@ -34,7 +34,7 @@ public class ContestApplication {
 
     private static List<ITCompany> createCompanies() {
         List<ITCompany> list = new ArrayList<>();
-        int size = 1000000;
+        int size = 200000;
         for (int i = 0; i < size/2; i++) {
             ITCompany company = new ITCompany("Company" + Integer.toString(2*i ), size - i);
             list.add(company);
@@ -46,8 +46,9 @@ public class ContestApplication {
 
     private static double calcAverageSorting(List<ITCompany> list) {
         List<ITCompany> data = createCompanies();
-        list.addAll(data);
         return LongStream.range(0, 100).map(i -> {
+            list.clear();
+            list.addAll(data);
             long l = System.currentTimeMillis();
             list.sort(comparator);
             return System.currentTimeMillis() - l;
