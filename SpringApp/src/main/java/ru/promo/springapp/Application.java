@@ -18,6 +18,7 @@ public class Application {
         ApplicationContext context = SpringApplication.run(Application.class, args);
 
         ITCompany company = context.getBean("company1", ITCompany.class);
+        log.info("Company = " + company);
 
         CompanyService companyService = context.getBean(CompanyService.class);
         companyService.registerCompany(company);

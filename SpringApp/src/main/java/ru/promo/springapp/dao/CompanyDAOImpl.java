@@ -6,7 +6,7 @@ import ru.promo.springapp.model.CompanyType;
 
 import java.util.logging.Logger;
 
-@Component("companyDAO")
+@Component("companyDAOImpl")
 public class CompanyDAOImpl implements CompanyDAO {
     private static Logger log = Logger.getLogger(CompanyDAOImpl.class.getName());
 

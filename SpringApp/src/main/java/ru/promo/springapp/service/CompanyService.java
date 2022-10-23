@@ -10,7 +10,7 @@ import ru.promo.springapp.model.CompanyType;
 
 @Component
 public class CompanyService {
-    private final CompanyDAO companyDAO;
+    private CompanyDAO companyDAO;
 
     @Autowired
     public CompanyService(@Qualifier("companyRepository") CompanyDAO companyDAO) {
