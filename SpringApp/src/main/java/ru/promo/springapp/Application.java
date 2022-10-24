@@ -1,5 +1,6 @@
 package ru.promo.springapp;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,10 +11,9 @@ import ru.promo.springapp.service.CompanyService;
 
 import java.util.logging.Logger;
 
+@Slf4j
 @SpringBootApplication
 public class Application {
-    private static Logger log = Logger.getLogger(Application.class.getName());
-
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(Application.class, args);
 

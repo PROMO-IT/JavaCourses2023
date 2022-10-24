@@ -295,12 +295,12 @@ public class MadScorpion25List<T> implements List<T>, AuthorHolder{
 
         @Override
         public boolean hasNext() {
-            return cursor < size;
+            return cursor < size - 1;
         }
 
         @Override
         public T next() {
-            if(cursor == size)
+            if(cursor + 1 == size)
                 throw new NoSuchElementException();
             return listData[cursor++];
         }

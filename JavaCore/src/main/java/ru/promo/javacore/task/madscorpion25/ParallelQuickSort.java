@@ -5,12 +5,9 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 public class ParallelQuickSort<T> extends AbstractQuickSort<T> {
-    public static int depth = 0;
+    private static int depth = 0;
     private int DELIMITER;
-    private final int DEPTH_LIMIT = 400;
     private final int PARALLEL_RANGE_START = 150_000;
-
-    private ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
 
     public ParallelQuickSort(T[] data, Comparator<? super T> comparator) {
         super(data, comparator);
@@ -23,9 +20,9 @@ public class ParallelQuickSort<T> extends AbstractQuickSort<T> {
             return;
         }
         DELIMITER = (getData().length / 100) * (Runtime.getRuntime().availableProcessors() / 2);
-
+        ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
         pool.invoke(new ParallelSortAction(0, size - 1));
-//        pool.shutdown();
+        pool.shutdown();
     }
     private class ParallelSortAction extends RecursiveAction{
         private int left;

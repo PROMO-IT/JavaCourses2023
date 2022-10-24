@@ -9,6 +9,7 @@ public class QuickSort<T> extends AbstractQuickSort<T>{
 
     public void quickSort(int left, int right){
         if(left >= right) return;
+        setAverageToRight(left, (left + right) / 2, right);
         int middle = partition(left, right);
 
         quickSort(left, middle - 1);
