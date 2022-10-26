@@ -1,12 +1,14 @@
 package ru.promo.springapp.model;
 
-public class ITCompany extends Company<CompanyType> {
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
+@JsonIncludeProperties(value = {"name", "about", "address", "phone", "employeeCount", "companyType", "technologies"})
+public class ITCompany extends Company {
     private String[] technologies;
     public ITCompany(String name, int employeeCount) {
-        super(name, employeeCount);
+        super(name, employeeCount, CompanyType.IT);
 //        System.out.println("constructor");
         technologies = new String[10];
-        setAttr(CompanyType.IT);
     }
 
     private void develop() {
@@ -15,11 +17,6 @@ public class ITCompany extends Company<CompanyType> {
 
     public static void someMethod() {
         System.out.println("static method of ITCompany");
-    }
-
-    @Override
-    public void work() {
-        develop();
     }
 
     public String[] getTechnologies() {

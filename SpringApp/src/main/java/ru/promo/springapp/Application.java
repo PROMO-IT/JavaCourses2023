@@ -16,11 +16,5 @@ import java.util.logging.Logger;
 public class Application {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(Application.class, args);
-
-        ITCompany company = context.getBean("company1", ITCompany.class);
-        log.info("Company = " + company);
-
-        CompanyService companyService = context.getBean(CompanyService.class);
-        companyService.registerCompany(company);
     }
 }

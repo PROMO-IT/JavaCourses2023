@@ -1,32 +1,39 @@
 package ru.promo.springapp.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
 import java.util.Objects;
 
-public abstract class Company<T> implements Organization {
+@JsonIncludeProperties(value = {"name", "about", "address", "phone", "employeeCount", "companyType"})
+public class Company {
     protected String name;
     private String about;
     private String address;
     private String phone;
     private int employeeCount;
-
-    private T attr;
+    private CompanyType companyType;
 
     public void placeVacancy(String s) {
         System.out.println("Company with name = " + name + " placed a vacancy: " + s);
     }
 
-    public Company(String name, String about, String address, String phone, int employeeCount) {
+    public Company() {
+    }
+
+    public Company(String name, String about, String address, String phone, int employeeCount, CompanyType companyType) {
         this.name = name;
         this.about = about;
         this.address = address;
         this.phone = phone;
         this.employeeCount = employeeCount;
+        this.companyType = companyType;
     }
 
-    public Company(String name, int employeeCount) {
+    public Company(String name, int employeeCount, CompanyType companyType) {
         this.name = name;
         this.employeeCount = employeeCount;
+        this.companyType = companyType;
     }
 
     @Override
@@ -98,11 +105,11 @@ public abstract class Company<T> implements Organization {
         return Objects.hash(name, about, address, phone, employeeCount);
     }
 
-    public T getAttr() {
-        return attr;
+    public CompanyType getCompanyType() {
+        return companyType;
     }
 
-    public void setAttr(T attr) {
-        this.attr = attr;
+    public void setCompanyType(CompanyType companyType) {
+        this.companyType = companyType;
     }
 }

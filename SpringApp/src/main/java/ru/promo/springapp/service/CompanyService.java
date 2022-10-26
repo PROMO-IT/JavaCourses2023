@@ -17,7 +17,7 @@ public class CompanyService {
         this.companyDAO = companyDAO;
     }
 
-    public void registerCompany(Company<CompanyType> company) {
+    public void registerCompany(Company company) {
         //company validation
         companyDAO.create(company);
     }

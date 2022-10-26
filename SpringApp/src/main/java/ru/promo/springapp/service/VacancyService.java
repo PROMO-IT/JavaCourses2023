@@ -2,11 +2,12 @@ package ru.promo.springapp.service;
 
 import org.springframework.stereotype.Component;
 import ru.promo.springapp.model.Company;
+import ru.promo.springapp.model.CompanyType;
 import ru.promo.springapp.model.ITCompany;
 
 @Component
 public class VacancyService {
-    private ITCompany company;
+    private Company company;
     public void placeVacancy(String vacancy, Company company) {
         System.out.println("Company with name " + company.getName() + " placed vacancy: " + vacancy);
     }
@@ -15,11 +16,11 @@ public class VacancyService {
         this.placeVacancy(vacancy, this.company);
     }
 
-    public ITCompany getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(ITCompany company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 }

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 @Component("companyDAOImpl")
 public class CompanyDAOImpl implements CompanyDAO {
     @Override
-    public void create(Company<CompanyType> company) {
+    public void create(Company company) {
         log.info(getClass().getName() + ": creating company");
     }
 }
