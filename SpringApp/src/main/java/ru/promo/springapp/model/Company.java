@@ -3,20 +3,26 @@ package ru.promo.springapp.model;
 
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 @JsonIncludeProperties(value = {"name", "about", "address", "phone", "employeeCount", "companyType"})
+@Entity
+@Table(name = "companies")
 public class Company {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     protected String name;
     private String about;
     private String address;
     private String phone;
-    private int employeeCount;
-    private CompanyType companyType;
 
-    public void placeVacancy(String s) {
-        System.out.println("Company with name = " + name + " placed a vacancy: " + s);
-    }
+    @Column(name = "employee_count", nullable = false)
+    private int employeeCount;
+    @Column(name = "company_type")
+    @Enumerated(value = EnumType.STRING)
+    private CompanyType companyType;
 
     public Company() {
     }
@@ -101,8 +107,7 @@ public class Company {
 
     @Override
     public int hashCode() {
-        System.out.println("HASHCODE!");
-        return Objects.hash(name, about, address, phone, employeeCount);
+         return Objects.hash(name, about, address, phone, employeeCount);
     }
 
     public CompanyType getCompanyType() {

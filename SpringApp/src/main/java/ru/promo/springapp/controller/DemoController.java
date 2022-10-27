@@ -16,7 +16,7 @@ import ru.promo.springapp.model.ITCompany;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/demo")
 public class DemoController {
     @Autowired
     private ApplicationContext context;

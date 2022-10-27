@@ -13,7 +13,7 @@ public class CompanyService {
     private CompanyDAO companyDAO;
 
     @Autowired
-    public CompanyService(@Qualifier("companyRepository") CompanyDAO companyDAO) {
+    public CompanyService(CompanyDAO companyDAO) {
         this.companyDAO = companyDAO;
     }
 
