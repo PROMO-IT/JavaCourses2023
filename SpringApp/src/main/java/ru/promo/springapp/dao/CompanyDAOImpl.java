@@ -3,12 +3,13 @@ package ru.promo.springapp.dao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import ru.promo.springapp.model.Company;
 import ru.promo.springapp.model.CompanyType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -19,15 +20,16 @@ public class CompanyDAOImpl implements CompanyDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Override
     @Transactional
+    @Override
     public void create(Company company) {
         entityManager.persist(company);
     }
 
     @Override
     public Company findById(long id) {
-        return entityManager.find(Company.class, id);
+        Company company = entityManager.find(Company.class, id);
+        return company;
     }
 
     @Override

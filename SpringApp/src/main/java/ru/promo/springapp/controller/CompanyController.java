@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.promo.springapp.dao.CompanyDAO;
 import ru.promo.springapp.model.Company;
 import ru.promo.springapp.model.CompanyType;
+import ru.promo.springapp.service.CompanyService;
+import ru.promo.springapp.service.VacancyService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -14,9 +17,13 @@ public class CompanyController {
     @Autowired
     private CompanyDAO companyDAO;
 
+    @Autowired
+    private CompanyService companyService;
+
     @PostMapping
     public void create(@RequestBody Company company) {
-        companyDAO.create(company);
+        companyService.createCompany(company);
+//        companyDAO.create(company);
     }
 
     @GetMapping("/{id}")

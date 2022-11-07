@@ -1,5 +1,6 @@
 package ru.promo.springapp.dao;
 
+import org.springframework.transaction.annotation.Transactional;
 import ru.promo.springapp.model.Company;
 import ru.promo.springapp.model.CompanyType;
 
