@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@JsonIncludeProperties(value = {"name", "about", "address", "phone", "employeeCount", "companyType", "vacancies"})
+@JsonIncludeProperties(value = {"id", "name", "about", "address", "phone", "employeeCount", "companyType", "vacancies"})
 @Entity
 @Table(name = "companies")
 public class Company {
@@ -51,8 +51,16 @@ public class Company {
         this.companyType = companyType;
     }
 
-//    public void setVacancies(List<Vacancy> vacancies) {
-//        vacancies.forEach(vacancy -> vacancy.setCompany(this));
-//        this.vacancies = vacancies;
-//    }
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", about='" + about + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", employeeCount=" + employeeCount +
+                ", companyType=" + companyType +
+                '}';
+    }
 }

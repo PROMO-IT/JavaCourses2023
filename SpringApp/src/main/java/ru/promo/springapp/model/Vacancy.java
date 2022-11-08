@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@JsonIncludeProperties(value = {"title", "description", "salary", "status"})
+@JsonIncludeProperties(value = {"id", "title", "description", "salary", "status"})
 @Entity
 @Table(name = "vacancies")
 public class Vacancy {
@@ -29,4 +29,15 @@ public class Vacancy {
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
+
+    @Override
+    public String toString() {
+        return "Vacancy{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", salary=" + salary +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }
