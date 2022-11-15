@@ -18,7 +18,7 @@ public class VacancyServicePostProcessor implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 //        System.out.println("after init " + beanName);
         if (bean instanceof VacancyService vacancyService) {
-            vacancyService.setCompany(new ITCompany("123", 123));
+            //do something
         }
         return BeanPostProcessor.super.postProcessAfterInitialization(bean, beanName);
     }

@@ -33,6 +33,9 @@ public class Company {
     @OneToMany(mappedBy = "company",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vacancy> vacancies;
 
+    @OneToMany(mappedBy = "company")
+    private List<Profile> profiles;
+
     public Company() {
     }
 
