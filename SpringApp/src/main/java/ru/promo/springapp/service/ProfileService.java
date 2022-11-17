@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import ru.promo.springapp.annotation.Retry;
 import ru.promo.springapp.dao.ProfileRepository;
 import ru.promo.springapp.model.Profile;
 import ru.promo.springapp.model.ProfileRole;
@@ -27,6 +28,7 @@ public class ProfileService implements UserDetailsService {
         return profileRepository.findByLogin(username);
     }
 
+    @Retry
     public void register(Profile profile) {
         profile.setPassword(encoder.encode(profile.getPassword()));
 //        profile.setRole(ProfileRole.HR);

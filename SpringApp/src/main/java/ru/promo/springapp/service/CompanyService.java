@@ -2,21 +2,15 @@ package ru.promo.springapp.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
-import ru.promo.springapp.dao.CompanyDAO;
-import ru.promo.springapp.dao.CompanyDAOImpl;
+import ru.promo.springapp.annotation.Retry;
 import ru.promo.springapp.dao.CompanyRepository;
 import ru.promo.springapp.exception.CompanyNotFoundException;
 import ru.promo.springapp.model.Company;
 import ru.promo.springapp.model.CompanyType;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @AllArgsConstructor
@@ -35,6 +29,7 @@ public class CompanyService {
         //...
     }
 
+    @Retry(count = 2, delay = 5000L)
     public Company findById(long id) {
         return companyRepository.findById(id)
                 .orElseThrow(() -> new CompanyNotFoundException(id));
